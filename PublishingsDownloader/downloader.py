@@ -9,8 +9,8 @@ def download_publishings_list(publishings_list, verbose=False):
     This method downloads only the missing publishings. It works like a download resume.
 
     Parameters:
-        publishings_list (list of PublishingData): the list of publishings
-        verbose (bool): flag to indicate the verbosity
+        publishings_list (list of PublishingData): the list of publishings.
+        verbose (bool): flag to indicate the verbosity.
     """
     repository_folder = paths.get_publishings_repository_path()
     for publishing in publishings_list:
@@ -29,9 +29,9 @@ def download_publishing(publishing, folder_path, verbose=False):
     """Download a publishing to a repository folder.
 
     Parameters:
-        publishing (PublishingData): the publishing
-        folder_path (Path): the destination folder for downloads
-        verbose (bool): flag to indicate the verbosity
+        publishing (PublishingData): the publishing.
+        folder_path (Path): the destination folder for downloads.
+        verbose (bool): flag to indicate the verbosity.
     """
     # Create publishing folder
     publishing_folder_name = paths.get_publishing_folder_name(publishing)
@@ -47,9 +47,9 @@ def download_order(order, folder_path, verbose=False):
     """Download an order to a destination.
 
     Parameters:
-        order (OrderData): the order
-        folder_path (Path): the destination folder for downloads
-        verbose (bool): flag to indicate the verbosity
+        order (OrderData): the order.
+        folder_path (Path): the destination folder for downloads.
+        verbose (bool): flag to indicate the verbosity.
     """
     order_file_name = paths.get_order_pdf_file_name(order)
     order_file_path = folder_path.joinpath(order_file_name)
@@ -70,11 +70,11 @@ def is_publishing_already_downloaded(publishing, repository_folder):
     """Check if a publishing is already downloaded.
 
     Parameters:
-        publishing (PublishingData): the publishing to be checked
-        repository_folder (Path): the folder path to check within
+        publishing (PublishingData): the publishing to be checked.
+        repository_folder (Path): the folder path to check within.
 
     Return:
-        bool: True if the publishing was already downloaded and False otherwise
+        bool: True if the publishing was already downloaded and False otherwise.
     """
     publishing_folder_name = paths.get_publishing_folder_name(publishing)
     publishing_folder_path = repository_folder.joinpath(publishing_folder_name)

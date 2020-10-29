@@ -1,8 +1,7 @@
 import os
 from pathlib import Path
-
 import wget
-from . import paths
+import paths
 
 
 def download_publishings_list(publishings_list, verbose=False):

@@ -1,5 +1,8 @@
 import os
+
 import pdf2image
+from PIL import Image as PILImage
+import pytesseract
 
 from . import constants
 
@@ -27,3 +30,18 @@ def convert_pdf_to_images(pdf_input_file_path, images_output_folder):
 
     # Return the images' paths
     return pdf_images_paths
+
+
+def convert_images_to_txt(image_files_paths, text_output_file_path):
+    """Convert images to a text file.
+
+    Parameters:
+        image_files_paths (list of str): the list of images paths.
+        text_output_file_path (str): the path for the output text file.
+    """
+    text_file = open(text_output_file_path, 'w')
+    for ifp in image_files_paths:
+        image = PILImage.open(ifp)
+        image_text = str(pytesseract.image_to_string(image, config=constants.TESSERACT_CONFIGS))
+        text_file.write(image_text)
+    text_file.close()

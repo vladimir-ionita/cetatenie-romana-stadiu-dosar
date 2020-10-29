@@ -2,13 +2,22 @@ from pathlib import Path
 from . import constants
 
 
-def get_publishings_repository_path():
+def get_repository_path():
     """Return the repository folder path.
 
     Return:
-        Path: the repository folder path
+        Path: the repository folder path.
     """
     return Path.home().joinpath(constants.REPOSITORY_PATH)
+
+
+def get_publishings_repository_path():
+    """Return the publishings repository folder path.
+
+    Return:
+        Path: the publishings repository folder path.
+    """
+    return Path.home().joinpath(constants.PUBLISHINGS_REPOSITORY_PATH)
 
 
 def get_publishing_folder_name(publishing):

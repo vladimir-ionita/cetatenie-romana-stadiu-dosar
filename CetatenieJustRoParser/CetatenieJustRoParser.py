@@ -16,3 +16,15 @@ def extract_publishings_list_from_html(html):
     return bs.find_all(
         lambda tag: tag.name == constants.HTML_TAG_LIST_ITEM and constants.PUBLISHING_ITEM_TEXT in tag.text
     )
+
+
+def extract_links_from_bs_tag(bs_tag):
+    """Find and return all links from a beautifulsoup tag.
+
+    Parameters:
+        bs_tag (bs4.Tag): the beautifulsoup tag
+
+    Returns:
+        list of str: the list of links
+    """
+    return bs_tag.find_all(constants.HTML_TAG_LINK)

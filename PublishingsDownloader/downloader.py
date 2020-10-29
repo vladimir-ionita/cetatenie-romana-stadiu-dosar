@@ -10,7 +10,7 @@ def download_publishings_list(publishings_list, verbose=False):
 
     Parameters:
         publishings_list (list of PublishingData): the list of publishings
-        verbose (Bool): flag to indicate the verbosity
+        verbose (bool): flag to indicate the verbosity
     """
     repository_folder = paths.get_publishings_repository_path()
     for publishing in publishings_list:
@@ -31,7 +31,7 @@ def download_publishing(publishing, folder_path, verbose=False):
     Parameters:
         publishing (PublishingData): the publishing
         folder_path (Path): the destination folder for downloads
-        verbose (Bool): flag to indicate the verbosity
+        verbose (bool): flag to indicate the verbosity
     """
     # Create publishing folder
     publishing_folder_name = paths.get_publishing_folder_name(publishing)
@@ -49,7 +49,7 @@ def download_order(order, folder_path, verbose=False):
     Parameters:
         order (OrderData): the order
         folder_path (Path): the destination folder for downloads
-        verbose (Bool): flag to indicate the verbosity
+        verbose (bool): flag to indicate the verbosity
     """
     order_file_name = paths.get_order_pdf_file_name(order)
     order_file_path = folder_path.joinpath(order_file_name)

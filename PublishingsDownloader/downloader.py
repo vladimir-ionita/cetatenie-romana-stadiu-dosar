@@ -12,7 +12,7 @@ def download_publishings_list(publishings_list, verbose=False):
         publishings_list (list of PublishingData): the list of publishings
         verbose (Bool): flag to indicate the verbosity
     """
-    repository_folder = paths.get_repository_folder_path()
+    repository_folder = paths.get_publishings_repository_path()
     for publishing in publishings_list:
         # If publishing was already downloaded, skip
         if is_publishing_already_downloaded(publishing, repository_folder):

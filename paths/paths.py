@@ -2,7 +2,7 @@ from pathlib import Path
 from . import constants
 
 
-def get_repository_folder_path():
+def get_publishings_repository_path():
     """Return the repository folder path.
 
     Return:

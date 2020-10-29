@@ -9,10 +9,10 @@ def get_publishings(html):
     """Retrieves all publishings.
 
     Parameters:
-        html (str): the html content
+        html (str): the html content.
 
     Returns:
-        list of PublishingData: a list of parsed PublishingData
+        list of PublishingData: a list of parsed PublishingData.
     """
     publishings_data_list = []
 
@@ -44,9 +44,9 @@ def extract_publishings_list_from_html(html):
     This method finds all list items tags that contain a specific text.
 
     Parameters:
-        html (str): the html content
+        html (str): the html content.
     Returns:
-        list of str: the list of found items
+        list of str: the list of found items.
     """
     bs = BeautifulSoup(html, 'lxml')
     return bs.find_all(
@@ -58,9 +58,9 @@ def extract_links_from_bs_tag(bs_tag):
     """Find and return all links from a beautifulsoup tag.
 
     Parameters:
-        bs_tag (bs4.Tag): the beautifulsoup tag
+        bs_tag (bs4.Tag): the beautifulsoup tag.
 
     Returns:
-        list of str: the list of links
+        list of str: the list of links.
     """
     return bs_tag.find_all(constants.HTML_TAG_LINK)

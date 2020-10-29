@@ -32,13 +32,13 @@ def get_publishing_folder_name(publishing):
     return publishing.publishing_date
 
 
-def get_order_file_name(order):
-    """Return the order file name.
+def get_order_pdf_file_name(order):
+    """Return the order PDF file name.
 
     Parameters:
         order (OrderData): an order.
 
     Return:
-        str: the order file name.
+        str: the order PDF file name.
     """
     return "Ordinul {}.pdf".format(order.name)

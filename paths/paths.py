@@ -42,3 +42,15 @@ def get_order_pdf_file_name(order):
         str: the order PDF file name.
     """
     return "Ordinul {}.pdf".format(order.name)
+
+
+def get_order_txt_file_name(order):
+    """Return the order file name.
+
+    Parameters:
+        order (OrderData): an order.
+
+    Return:
+        str: the order file name.
+    """
+    return "Ordinul {}.txt".format(order.name)

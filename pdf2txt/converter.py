@@ -46,7 +46,7 @@ def convert_pdf_to_txt(pdf_input_file_path, text_output_file_path, verbose=False
         return
 
     # Create a temporary folder to store temporary files
-    temporary_folder_path = paths.get_storage_folder_path().joinpath(constants.TEMPORARY_FOLDER_NAME)
+    temporary_folder_path = paths.get_temporary_storage_path()
     if not os.path.exists(temporary_folder_path):
         os.mkdir(temporary_folder_path)
 

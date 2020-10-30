@@ -39,15 +39,14 @@ def download_publishing(publishing, folder_path, verbose=False):
 
     # Download orders
     for order in publishing.orders:
-        download_order(order, publishing_folder_path, verbose)
+        download_order(order, verbose)
 
 
-def download_order(order, folder_path, verbose=False):
-    """Download an order to a destination.
+def download_order(order, verbose=False):
+    """Download the order.
 
     Parameters:
         order (OrderData): the order.
-        folder_path (Path): the destination folder for downloads.
         verbose (bool): flag to indicate the verbosity.
     """
     order_file_path = paths.get_order_pdf_file_path(order)

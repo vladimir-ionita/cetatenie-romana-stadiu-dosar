@@ -16,7 +16,7 @@ def convert_publishing_orders_from_pdf_to_txt(publishing, verbose=False):
         publishing (PublishingData): the publishing.
         verbose (bool): flag to indicate the verbosity.
     """
-    for order in publishing:
+    for order in publishing.orders:
         convert_order_from_pdf_to_txt(order, verbose)
 
 

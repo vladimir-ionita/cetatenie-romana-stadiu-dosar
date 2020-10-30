@@ -20,6 +20,15 @@ def get_publishings_storage_folder_path():
     return Path.home().joinpath(constants.PUBLISHINGS_STORAGE_PATH)
 
 
+def get_temporary_storage_path():
+    """Return the temporary storage folder path.
+
+    Return:
+        Path: the temporary storage folder path.
+    """
+    return Path.home().joinpath(constants.TEMPORARY_STORAGE_PATH)
+
+
 def get_publishing_folder_path(publishing):
     """Return the publishing folder path.
 

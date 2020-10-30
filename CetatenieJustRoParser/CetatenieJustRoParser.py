@@ -28,7 +28,7 @@ def retrieve_publishings(html):
         for order_link in publishing_order_links:
             # Retrieve order data
             order_name = order_link.get_text()
-            order_link = constants.CETATENIE_JUST_RO_BASE_URL + order_link['href']
+            order_link = constants.CETATENIE_JUST_RO_WEBSITE_BASE_URL + order_link['href']
             # Create the order data object
             order_data = OrderData(order_name, order_link)
             # Append the order to the publishing

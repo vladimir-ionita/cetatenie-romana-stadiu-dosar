@@ -11,7 +11,7 @@ def run():
     publishings = get_publishings(html_content)
 
     # Download publishings
-    download_publishings_list(publishings, verbose=True)
+    download_publishings(publishings, verbose=True)
 
 
 if __name__ == '__main__':

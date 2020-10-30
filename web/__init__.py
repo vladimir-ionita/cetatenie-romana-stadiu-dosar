@@ -1,1 +1,1 @@
-from .web import get_html_content
+from .web_fetcher import get_html_content

@@ -15,11 +15,11 @@ def download_publishings_list(publishings_list, verbose=False):
         # If publishing was already downloaded, skip
         if is_publishing_downloaded(publishing):
             if verbose:
-                print("Publishing {} already exists".format(publishing.name))
+                print("\tPublishing {} already exists".format(publishing.name))
         # Download the publishing otherwise
         else:
             if verbose:
-                print("Downloading publishing {}".format(publishing.name))
+                print("\tDownloading publishing {}".format(publishing.name))
             download_publishing(publishing, verbose)
 
 
@@ -51,12 +51,12 @@ def download_order(order, verbose=False):
     # If file already exists, skip
     if os.path.exists(order_file_path):
         if verbose:
-            print("\tOrder `{}` already exists".format(order.name))
+            print("\t\tOrder `{}` already exists".format(order.name))
         return
 
     # Download the file otherwise
     if verbose:
-        print("\tDownloading order {}".format(order.name))
+        print("\t\tDownloading order {}".format(order.name))
     wget.download(order.link, str(order_file_path))
 
 

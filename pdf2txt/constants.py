@@ -1,5 +1,3 @@
-TEMPORARY_FOLDER_NAME = "converting-temporary-images"
-
 IMAGE_QUALITY_DPI = 500
 IMAGE_FILE_NAME_FORMAT = "image{}.jpg"
 IMAGE_FILE_FORMAT = "JPEG"

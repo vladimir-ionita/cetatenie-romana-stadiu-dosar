@@ -4,4 +4,4 @@ CETATENIE_JUST_RO_ORDERS_WEB_PAGE_URL = "http://oldcetatenie.just.ro/index.php/r
 HTML_TAG_LIST_ITEM = "li"
 HTML_TAG_LINK = "a"
 
-PUBLISHING_ITEM_TEXT = "Data de"
+PUBLISHING_ITEM_CONTAINING_TEXT = "Data de"

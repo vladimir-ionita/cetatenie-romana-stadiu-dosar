@@ -50,7 +50,7 @@ def extract_publishings_list_from_html(html):
     """
     bs = BeautifulSoup(html, 'lxml')
     return bs.find_all(
-        lambda tag: tag.name == constants.HTML_TAG_LIST_ITEM and constants.PUBLISHING_ITEM_TEXT in tag.text
+        lambda tag: tag.name == constants.HTML_TAG_LIST_ITEM and constants.PUBLISHING_ITEM_CONTAINING_TEXT in tag.text
     )
 
 

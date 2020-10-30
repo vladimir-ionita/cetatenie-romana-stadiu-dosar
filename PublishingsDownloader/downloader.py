@@ -50,8 +50,7 @@ def download_order(order, folder_path, verbose=False):
         folder_path (Path): the destination folder for downloads.
         verbose (bool): flag to indicate the verbosity.
     """
-    order_file_name = paths.get_order_pdf_file_name(order)
-    order_file_path = folder_path.joinpath(order_file_name)
+    order_file_path = paths.get_order_pdf_file_path(order)
 
     # If file already exists, skip
     if os.path.exists(order_file_path):
@@ -80,8 +79,7 @@ def is_publishing_already_downloaded(publishing, repository_folder):
         return False
 
     for order in publishing.orders:
-        order_file_name = paths.get_order_pdf_file_name(order)
-        order_file_path = publishing_folder_path.joinpath(order_file_name)
+        order_file_path = paths.get_order_pdf_file_path(order)
         if not os.path.exists(order_file_path) or not os.path.isfile(order_file_path):
             return False
     return True

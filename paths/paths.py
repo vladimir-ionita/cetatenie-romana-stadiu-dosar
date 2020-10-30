@@ -33,16 +33,17 @@ def get_publishing_folder_path(publishing):
     return get_publishings_repository_path().joinpath(publishing_folder_name)
 
 
-def get_order_pdf_file_name(order):
-    """Return the order PDF file name.
+def get_order_pdf_file_path(order):
+    """Return the order PDF file path.
 
     Parameters:
-        order (OrderData): an order.
+        order (OrderData): the order.
 
     Return:
-        str: the order PDF file name.
+        Path: the order PDF file path.
     """
-    return "Ordinul {}.pdf".format(order.name)
+    order_file_name = "Ordinul {}.pdf".format(order.name)
+    return get_publishing_folder_path(order.publishing).joinpath(order_file_name)
 
 
 def get_order_txt_file_name(order):

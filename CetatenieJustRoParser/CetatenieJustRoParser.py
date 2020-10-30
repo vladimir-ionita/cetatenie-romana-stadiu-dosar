@@ -20,7 +20,7 @@ def retrieve_publishings(html):
     publishings_item_list = extract_publishings_list_from_html(html)
     for item in publishings_item_list:
         # Retrieve the publishing date
-        publishing_date_string = item.strong.get_text().lstrip().rstrip()
+        publishing_date_string = extract_publishing_date_string_from_html(item)
         # Create the publishing data object
         publishing_data = PublishingData(publishing_date_string)
         # Extract order links from the item
@@ -37,6 +37,25 @@ def retrieve_publishings(html):
         publishings_data_list.append(publishing_data)
 
     return publishings_data_list
+
+
+def extract_publishing_date_string_from_html(bs_tag):
+    """Find and return the publishing date from the beautifulsoup tag.
+    The date is contained in 'strong' tags. Sometimes in one tag, other times across two tags.
+
+    Parameters:
+        bs_tag (bs4.Tag): the beautifulsoup tag.
+
+    Return:
+        str: the publishing date string
+    """
+    strong_elements = bs_tag.find_all(constants.HTML_TAG_STRONG)
+
+    date_string = ""
+    while len(date_string) < constants.PUBLISHING_DATE_STRING_LENGTH:
+        element_text = strong_elements.pop(0).get_text().strip()
+        date_string += element_text
+    return date_string[:constants.PUBLISHING_DATE_STRING_LENGTH]
 
 
 def extract_publishings_list_from_html(html):

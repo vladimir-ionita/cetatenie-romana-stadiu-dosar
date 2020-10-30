@@ -1,3 +1,7 @@
+from datetime import datetime
+from . import constants
+
+
 class PublishingData:
     """Stores data about the publishing.
 
@@ -6,13 +10,15 @@ class PublishingData:
         orders (list of Orders): the list of orders of the publishing.
     """
 
-    def __init__(self, publishing_date):
+    def __init__(self, publishing_date_string):
         """Initialize a PublishingData object.
 
         Parameters:
-            publishing_date (str): the publishing date string.
+            publishing_date_string (str): the publishing date string.
         """
-        self.name = publishing_date
+        # Change the date format to from dd.mm.yyyy to yyyy.mm.dd, for easier folder navigation
+        publishing_date = datetime.strptime(publishing_date_string, constants.PUBLISHING_INPUT_DATE_FORMAT)
+        self.name = publishing_date.strftime(constants.PUBLISHING_OUTPUT_DATE_FORMAT)
         self.orders = []
 
     def add_order(self, order):

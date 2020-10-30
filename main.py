@@ -3,6 +3,7 @@ from CetatenieJustRoParser import *
 from PublishingsDownloader import *
 from pdf2txt import *
 from OrdersParser.parser import *
+import paths
 
 
 def run():
@@ -24,4 +25,6 @@ def run():
 
 
 if __name__ == '__main__':
+    paths.setup()
     run()
+    paths.cleanup()

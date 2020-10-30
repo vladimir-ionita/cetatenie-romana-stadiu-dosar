@@ -1,5 +1,4 @@
 import os
-from pathlib import Path
 import wget
 import paths
 
@@ -12,7 +11,6 @@ def download_publishings_list(publishings_list, verbose=False):
         publishings_list (list of PublishingData): the list of publishings.
         verbose (bool): flag to indicate the verbosity.
     """
-    repository_folder = paths.get_publishings_repository_path()
     for publishing in publishings_list:
         # If publishing was already downloaded, skip
         if is_publishing_downloaded(publishing):
@@ -22,15 +20,14 @@ def download_publishings_list(publishings_list, verbose=False):
         else:
             if verbose:
                 print("Downloading publishing {}".format(publishing.publishing_date))
-            download_publishing(publishing, repository_folder, verbose)
+            download_publishing(publishing, verbose)
 
 
-def download_publishing(publishing, folder_path, verbose=False):
-    """Download a publishing to a repository folder.
+def download_publishing(publishing, verbose=False):
+    """Download the publishing.
 
     Parameters:
         publishing (PublishingData): the publishing.
-        folder_path (Path): the destination folder for downloads.
         verbose (bool): flag to indicate the verbosity.
     """
     # Create publishing folder

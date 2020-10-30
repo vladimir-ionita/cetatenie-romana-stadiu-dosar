@@ -3,21 +3,30 @@ from . import constants
 
 
 def get_storage_folder_path():
-    """Return the repository folder path.
+    """Return the storage folder path.
 
     Return:
-        Path: the repository folder path.
+        Path: the storage folder path.
     """
     return Path.home().joinpath(constants.FILES_STORAGE_PATH)
 
 
 def get_publishings_storage_folder_path():
-    """Return the publishings repository folder path.
+    """Return the publishings storage folder path.
 
     Return:
-        Path: the publishings repository folder path.
+        Path: the publishings storage folder path.
     """
     return Path.home().joinpath(constants.PUBLISHINGS_STORAGE_PATH)
+
+
+def get_temporary_storage_path():
+    """Return the temporary storage folder path.
+
+    Return:
+        Path: the temporary storage folder path.
+    """
+    return Path.home().joinpath(constants.TEMPORARY_STORAGE_PATH)
 
 
 def get_publishing_folder_path(publishing):

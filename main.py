@@ -2,6 +2,7 @@ from data_gateway import web
 from CetatenieJustRoParser import *
 from PublishingsDownloader import *
 from pdf2txt import *
+from OrdersParser.parser import *
 
 
 def run():
@@ -17,6 +18,9 @@ def run():
     # Convert the publishings' orders from PDFs to TXTs
     for p in publishings:
         convert_publishing_orders_from_pdf_to_txt(p)
+
+    # Parse publishings
+    dossiers = get_publishings_list_dossiers(publishings)
 
 
 if __name__ == '__main__':

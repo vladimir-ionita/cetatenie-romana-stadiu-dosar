@@ -1,9 +1,9 @@
 class PublishingData:
-    """Stores the parsed publishing data.
+    """Stores data about the publishing.
 
     Attributes:
-        publishing_date (str): the publishing date string.
-        orders (list of Orders): a list of orders.
+        name (str): the publishing name.
+        orders (list of Orders): the list of orders of the publishing.
     """
 
     def __init__(self, publishing_date):
@@ -12,7 +12,7 @@ class PublishingData:
         Parameters:
             publishing_date (str): the publishing date string.
         """
-        self.publishing_date = publishing_date
+        self.name = publishing_date
         self.orders = []
 
     def add_order(self, order):

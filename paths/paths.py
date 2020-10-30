@@ -29,7 +29,7 @@ def get_publishing_folder_path(publishing):
     Return:
         Path: the publishing folder path.
     """
-    publishing_folder_name = publishing.publishing_date
+    publishing_folder_name = publishing.name
     return get_publishings_storage_folder_path().joinpath(publishing_folder_name)
 
 

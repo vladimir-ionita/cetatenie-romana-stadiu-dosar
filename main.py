@@ -5,10 +5,10 @@ from PublishingsDownloader import *
 
 def run():
     # Retrieve the html content
-    html_content = web.get_html_content(CETATENIE_JUST_RO_ORDERS_URL)
+    html_content = web.get_html_content(CETATENIE_JUST_RO_ORDERS_WEB_PAGE_URL)
 
     # Retrieve publishings
-    publishings = get_publishings(html_content)
+    publishings = retrieve_publishings(html_content)
 
     # Download publishings
     download_publishings(publishings, verbose=True)

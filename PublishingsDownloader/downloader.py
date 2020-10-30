@@ -15,11 +15,11 @@ def download_publishings_list(publishings_list, verbose=False):
         # If publishing was already downloaded, skip
         if is_publishing_downloaded(publishing):
             if verbose:
-                print("Publishing {} already exists".format(publishing.publishing_date))
+                print("Publishing {} already exists".format(publishing.name))
         # Download the publishing otherwise
         else:
             if verbose:
-                print("Downloading publishing {}".format(publishing.publishing_date))
+                print("Downloading publishing {}".format(publishing.name))
             download_publishing(publishing, verbose)
 
 

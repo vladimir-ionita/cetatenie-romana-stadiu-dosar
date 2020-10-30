@@ -5,14 +5,14 @@ from CetatenieJustRoParser.OrderData import OrderData
 from CetatenieJustRoParser.PublishingData import PublishingData
 
 
-def get_publishings(html):
+def retrieve_publishings(html):
     """Retrieves all publishings.
 
     Parameters:
         html (str): the html content.
 
     Returns:
-        list of PublishingData: a list of parsed PublishingData.
+        list of PublishingData: the list of found publishings.
     """
     publishings_data_list = []
 
@@ -28,7 +28,7 @@ def get_publishings(html):
         for order_link in publishing_order_links:
             # Retrieve order data
             order_name = order_link.get_text()
-            order_link = constants.CETATENIE_JUST_RO_BASE_URL + order_link['href']
+            order_link = constants.CETATENIE_JUST_RO_WEBSITE_BASE_URL + order_link['href']
             # Create the order data object
             order_data = OrderData(order_name, order_link)
             # Append the order to the publishing
@@ -50,7 +50,7 @@ def extract_publishings_list_from_html(html):
     """
     bs = BeautifulSoup(html, 'lxml')
     return bs.find_all(
-        lambda tag: tag.name == constants.HTML_TAG_LIST_ITEM and constants.PUBLISHING_ITEM_TEXT in tag.text
+        lambda tag: tag.name == constants.HTML_TAG_LIST_ITEM and constants.PUBLISHING_ITEM_CONTAINING_TEXT in tag.text
     )
 
 

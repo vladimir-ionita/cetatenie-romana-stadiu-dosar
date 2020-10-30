@@ -5,14 +5,14 @@ from CetatenieJustRoParser.OrderData import OrderData
 from CetatenieJustRoParser.PublishingData import PublishingData
 
 
-def get_publishings(html):
+def retrieve_publishings(html):
     """Retrieves all publishings.
 
     Parameters:
         html (str): the html content.
 
     Returns:
-        list of PublishingData: a list of parsed PublishingData.
+        list of PublishingData: the list of found publishings.
     """
     publishings_data_list = []
 

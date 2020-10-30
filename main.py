@@ -8,7 +8,7 @@ def run():
     html_content = web.get_html_content(CETATENIE_JUST_RO_ORDERS_URL)
 
     # Retrieve publishings
-    publishings = get_publishings(html_content)
+    publishings = retrieve_publishings(html_content)
 
     # Download publishings
     download_publishings(publishings, verbose=True)

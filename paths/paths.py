@@ -46,13 +46,14 @@ def get_order_pdf_file_path(order):
     return get_publishing_folder_path(order.publishing).joinpath(order_file_name)
 
 
-def get_order_txt_file_name(order):
-    """Return the order file name.
+def get_order_txt_file_path(order):
+    """Return the order TXT file path.
 
     Parameters:
-        order (OrderData): an order.
+        order (OrderData): the order.
 
     Return:
-        str: the order file name.
+        Path: the order TXT file path.
     """
-    return "Ordinul {}.txt".format(order.name)
+    order_file_name = "Ordinul {}.txt".format(order.name)
+    return get_publishing_folder_path(order.publishing).joinpath(order_file_name)

@@ -29,7 +29,7 @@ def get_temporary_storage_folder_path():
     return Path.home().joinpath(constants.TEMPORARY_STORAGE_PATH)
 
 
-def get_dossiers_storage_path():
+def get_dossiers_storage_folder_path():
     """Return the dossiers storage folder path.
 
     Return:
@@ -87,4 +87,4 @@ def get_dossiers_collection_file_path_for_year(year):
         Path: the dossiers collection file path.
     """
     dossiers_collection_file_name = "Dossiers {}.txt".format(year)
-    return get_dossiers_storage_path().joinpath(dossiers_collection_file_name)
+    return get_dossiers_storage_folder_path().joinpath(dossiers_collection_file_name)

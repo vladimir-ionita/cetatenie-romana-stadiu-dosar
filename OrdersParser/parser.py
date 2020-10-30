@@ -6,6 +6,25 @@ from . import constants
 from .DossierData import DossierData
 
 
+def get_publishings_list_dossiers(publishings_list, verbose=False):
+    """Get the publishing list dossiers.
+
+    Parameters:
+        publishings_list (list of PublishingData): the list of publishings.
+        verbose (bool): flag to indicate the verbosity.
+
+    Return:
+        list of DossierData: the found dossiers.
+    """
+    dossiers = []
+    for publishing in publishings_list:
+        publishing_dossiers = get_publishing_dossiers(publishing)
+        if verbose:
+            print("The publishing {} has {} dossiers".format(publishing.name, len(publishing_dossiers)))
+        dossiers.extend(publishing_dossiers)
+    return dossiers
+
+
 def get_publishing_dossiers(publishing, verbose=False):
     """Get the publishing dossiers.
 

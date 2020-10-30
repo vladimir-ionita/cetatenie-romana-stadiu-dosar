@@ -20,16 +20,17 @@ def get_publishings_repository_path():
     return Path.home().joinpath(constants.PUBLISHINGS_REPOSITORY_PATH)
 
 
-def get_publishing_folder_name(publishing):
-    """Return the publishing folder name.
+def get_publishing_folder_path(publishing):
+    """Return the publishing folder path.
 
     Parameters:
         publishing (PublishingData): a publishing.
 
     Return:
-        str: the publishing folder name.
+        Path: the publishing folder path.
     """
-    return publishing.publishing_date
+    publishing_folder_name = publishing.publishing_date
+    return get_publishings_repository_path().joinpath(publishing_folder_name)
 
 
 def get_order_pdf_file_name(order):

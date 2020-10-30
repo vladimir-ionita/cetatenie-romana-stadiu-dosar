@@ -34,8 +34,7 @@ def download_publishing(publishing, folder_path, verbose=False):
         verbose (bool): flag to indicate the verbosity.
     """
     # Create publishing folder
-    publishing_folder_name = paths.get_publishing_folder_name(publishing)
-    publishing_folder_path = folder_path.joinpath(publishing_folder_name)
+    publishing_folder_path = paths.get_publishing_folder_path(publishing)
     publishing_folder_path.mkdir(parents=True, exist_ok=True)
 
     # Download orders
@@ -76,8 +75,7 @@ def is_publishing_already_downloaded(publishing, repository_folder):
     Return:
         bool: True if the publishing was already downloaded and False otherwise.
     """
-    publishing_folder_name = paths.get_publishing_folder_name(publishing)
-    publishing_folder_path = repository_folder.joinpath(publishing_folder_name)
+    publishing_folder_path = paths.get_publishing_folder_path(publishing)
     if not os.path.exists(publishing_folder_path) or not os.path.isdir(publishing_folder_path):
         return False
 

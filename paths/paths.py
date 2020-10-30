@@ -2,7 +2,7 @@ from pathlib import Path
 from . import constants
 
 
-def get_repository_path():
+def get_storage_folder_path():
     """Return the repository folder path.
 
     Return:

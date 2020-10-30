@@ -13,7 +13,6 @@ class OrderData:
         Parameters:
             name (str): order name.
             link (str): order link.
-            publishing (PublishingData): the publishing of the order.
         """
         self.name = name
         self.link = link

@@ -17,7 +17,7 @@ def get_publishings_storage_folder_path():
     Return:
         Path: the publishings repository folder path.
     """
-    return Path.home().joinpath(constants.PUBLISHINGS_REPOSITORY_PATH)
+    return Path.home().joinpath(constants.PUBLISHINGS_STORAGE_PATH)
 
 
 def get_publishing_folder_path(publishing):

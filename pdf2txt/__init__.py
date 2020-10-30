@@ -1,1 +1,1 @@
-from .converter import convert_pdf_to_txt
+from .converter import convert_order_from_pdf_to_txt

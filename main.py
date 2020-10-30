@@ -1,6 +1,7 @@
 from data_gateway import web
 from CetatenieJustRoParser import *
 from PublishingsDownloader import *
+from pdf2txt import *
 
 
 def run():
@@ -16,7 +17,7 @@ def run():
     # Convert the orders from PDFs to TXTs
     for p in publishings:
         for order in p.orders:
-            convert_pdf_to_txt(paths.get_order_pdf_file_path(order), paths.get_order_txt_file_path(order), verbose=True)
+            convert_order_from_pdf_to_txt(order)
 
 
 if __name__ == '__main__':

@@ -17,8 +17,8 @@ class PublishingData:
             publishing_date_string (str): the publishing date string.
         """
         # Change the date format to from dd.mm.yyyy to yyyy.mm.dd, for easier folder navigation
-        publishing_date = datetime.strptime(publishing_date_string, constants.PUBLISHING_INPUT_DATE_FORMAT)
-        self.name = publishing_date.strftime(constants.PUBLISHING_OUTPUT_DATE_FORMAT)
+        publishing_date = datetime.strptime(publishing_date_string, constants.PUBLISHING_DATE_INPUT_FORMAT)
+        self.name = publishing_date.strftime(constants.PUBLISHING_DATE_OUTPUT_FORMAT)
         self.orders = []
 
     def add_order(self, order):

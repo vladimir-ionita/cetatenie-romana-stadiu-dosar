@@ -2,6 +2,14 @@ from pathlib import Path
 from . import constants
 
 
+def setup():
+    """Create storage folders."""
+    get_storage_folder_path().mkdir(parents=True, exist_ok=True)
+    get_publishings_storage_folder_path().mkdir(parents=True, exist_ok=True)
+    get_temporary_storage_folder_path().mkdir(parents=True, exist_ok=True)
+    get_dossiers_storage_folder_path().mkdir(parents=True, exist_ok=True)
+
+
 def get_storage_folder_path():
     """Return the storage folder path.
 

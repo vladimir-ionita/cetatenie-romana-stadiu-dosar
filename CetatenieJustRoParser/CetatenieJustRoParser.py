@@ -55,7 +55,7 @@ def extract_publishings_list_from_html(html):
 
 
 def extract_links_from_bs_tag(bs_tag):
-    """Find and return all links from a beautifulsoup tag.
+    """Find and return all links from the beautifulsoup tag.
 
     Parameters:
         bs_tag (bs4.Tag): the beautifulsoup tag.

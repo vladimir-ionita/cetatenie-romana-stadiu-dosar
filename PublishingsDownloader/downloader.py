@@ -15,7 +15,7 @@ def download_publishings_list(publishings_list, verbose=False):
     repository_folder = paths.get_publishings_repository_path()
     for publishing in publishings_list:
         # If publishing was already downloaded, skip
-        if is_publishing_already_downloaded(publishing, repository_folder):
+        if is_publishing_downloaded(publishing):
             if verbose:
                 print("Publishing {} already exists".format(publishing.publishing_date))
         # Download the publishing otherwise
@@ -64,15 +64,14 @@ def download_order(order, folder_path, verbose=False):
     wget.download(order.link, str(order_file_path))
 
 
-def is_publishing_already_downloaded(publishing, repository_folder):
-    """Check if a publishing is already downloaded.
+def is_publishing_downloaded(publishing):
+    """Check if the publishing is downloaded.
 
     Parameters:
         publishing (PublishingData): the publishing to be checked.
-        repository_folder (Path): the folder path to check within.
 
     Return:
-        bool: True if the publishing was already downloaded and False otherwise.
+        bool: True if the publishing is downloaded and False otherwise.
     """
     publishing_folder_path = paths.get_publishing_folder_path(publishing)
     if not os.path.exists(publishing_folder_path) or not os.path.isdir(publishing_folder_path):

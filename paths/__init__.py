@@ -1,2 +1,2 @@
-from .constants import REPOSITORY_PATH
+from .constants import FILES_STORAGE_PATH
 from .paths import *

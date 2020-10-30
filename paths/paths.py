@@ -29,6 +29,15 @@ def get_temporary_storage_path():
     return Path.home().joinpath(constants.TEMPORARY_STORAGE_PATH)
 
 
+def get_dossiers_storage_path():
+    """Return the dossiers storage folder path.
+
+    Return:
+        Path: the dossiers storage folder path.
+    """
+    return Path.home().joinpath(constants.DOSSIERS_STORAGE_PATH)
+
+
 def get_publishing_folder_path(publishing):
     """Return the publishing folder path.
 

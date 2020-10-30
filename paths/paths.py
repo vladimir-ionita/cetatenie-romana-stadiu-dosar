@@ -1,5 +1,21 @@
+import os
+
 from pathlib import Path
 from . import constants
+
+
+def setup():
+    """Create storage folders."""
+    get_storage_folder_path().mkdir(parents=True, exist_ok=True)
+    get_publishings_storage_folder_path().mkdir(parents=True, exist_ok=True)
+    get_temporary_storage_folder_path().mkdir(parents=True, exist_ok=True)
+    get_dossiers_storage_folder_path().mkdir(parents=True, exist_ok=True)
+
+
+def cleanup():
+    """Cleanup the temporary storage."""
+    for item in os.listdir(get_temporary_storage_folder_path()):
+        os.remove(item)
 
 
 def get_storage_folder_path():

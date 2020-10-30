@@ -19,6 +19,7 @@ class PublishingData:
         """Add an order to the publishing.
 
         Parameters:
-            order (Order): an order.
+            order (Order): the order.
         """
+        order.publishing = self
         self.orders.append(order)

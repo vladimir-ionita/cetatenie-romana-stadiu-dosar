@@ -2,55 +2,58 @@ from pathlib import Path
 from . import constants
 
 
-def get_repository_path():
+def get_storage_folder_path():
     """Return the repository folder path.
 
     Return:
         Path: the repository folder path.
     """
-    return Path.home().joinpath(constants.REPOSITORY_PATH)
+    return Path.home().joinpath(constants.FILES_STORAGE_PATH)
 
 
-def get_publishings_repository_path():
+def get_publishings_storage_folder_path():
     """Return the publishings repository folder path.
 
     Return:
         Path: the publishings repository folder path.
     """
-    return Path.home().joinpath(constants.PUBLISHINGS_REPOSITORY_PATH)
+    return Path.home().joinpath(constants.PUBLISHINGS_STORAGE_PATH)
 
 
-def get_publishing_folder_name(publishing):
-    """Return the publishing folder name.
+def get_publishing_folder_path(publishing):
+    """Return the publishing folder path.
 
     Parameters:
         publishing (PublishingData): a publishing.
 
     Return:
-        str: the publishing folder name.
+        Path: the publishing folder path.
     """
-    return publishing.publishing_date
+    publishing_folder_name = publishing.publishing_date
+    return get_publishings_storage_folder_path().joinpath(publishing_folder_name)
 
 
-def get_order_pdf_file_name(order):
-    """Return the order PDF file name.
+def get_order_pdf_file_path(order):
+    """Return the order PDF file path.
 
     Parameters:
-        order (OrderData): an order.
+        order (OrderData): the order.
 
     Return:
-        str: the order PDF file name.
+        Path: the order PDF file path.
     """
-    return "Ordinul {}.pdf".format(order.name)
+    order_file_name = "Ordinul {}.pdf".format(order.name)
+    return get_publishing_folder_path(order.publishing).joinpath(order_file_name)
 
 
-def get_order_txt_file_name(order):
-    """Return the order file name.
+def get_order_txt_file_path(order):
+    """Return the order TXT file path.
 
     Parameters:
-        order (OrderData): an order.
+        order (OrderData): the order.
 
     Return:
-        str: the order file name.
+        Path: the order TXT file path.
     """
-    return "Ordinul {}.txt".format(order.name)
+    order_file_name = "Ordinul {}.txt".format(order.name)
+    return get_publishing_folder_path(order.publishing).joinpath(order_file_name)

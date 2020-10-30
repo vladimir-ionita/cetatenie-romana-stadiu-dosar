@@ -1,2 +1,2 @@
-REPOSITORY_PATH = "dev/romanian-citizenship-status-files"
-PUBLISHINGS_REPOSITORY_PATH = "dev/romanian-citizenship-status-files/publishings"
+FILES_STORAGE_PATH = "dev/romanian-citizenship-status-files"
+PUBLISHINGS_STORAGE_PATH = "dev/romanian-citizenship-status-files/publishings"

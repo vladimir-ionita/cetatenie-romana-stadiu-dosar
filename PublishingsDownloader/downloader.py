@@ -34,8 +34,7 @@ def download_publishing(publishing, folder_path, verbose=False):
         verbose (bool): flag to indicate the verbosity.
     """
     # Create publishing folder
-    publishing_folder_name = paths.get_publishing_folder_name(publishing)
-    publishing_folder_path = folder_path.joinpath(publishing_folder_name)
+    publishing_folder_path = paths.get_publishing_folder_path(publishing)
     publishing_folder_path.mkdir(parents=True, exist_ok=True)
 
     # Download orders
@@ -51,8 +50,7 @@ def download_order(order, folder_path, verbose=False):
         folder_path (Path): the destination folder for downloads.
         verbose (bool): flag to indicate the verbosity.
     """
-    order_file_name = paths.get_order_pdf_file_name(order)
-    order_file_path = folder_path.joinpath(order_file_name)
+    order_file_path = paths.get_order_pdf_file_path(order)
 
     # If file already exists, skip
     if os.path.exists(order_file_path):
@@ -76,14 +74,12 @@ def is_publishing_already_downloaded(publishing, repository_folder):
     Return:
         bool: True if the publishing was already downloaded and False otherwise.
     """
-    publishing_folder_name = paths.get_publishing_folder_name(publishing)
-    publishing_folder_path = repository_folder.joinpath(publishing_folder_name)
+    publishing_folder_path = paths.get_publishing_folder_path(publishing)
     if not os.path.exists(publishing_folder_path) or not os.path.isdir(publishing_folder_path):
         return False
 
     for order in publishing.orders:
-        order_file_name = paths.get_order_pdf_file_name(order)
-        order_file_path = publishing_folder_path.joinpath(order_file_name)
+        order_file_path = paths.get_order_pdf_file_path(order)
         if not os.path.exists(order_file_path) or not os.path.isfile(order_file_path):
             return False
     return True

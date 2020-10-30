@@ -12,12 +12,11 @@ def run():
     publishings = retrieve_publishings(html_content)
 
     # Download publishings
-    download_publishings(publishings, verbose=True)
+    download_publishings(publishings)
 
-    # Convert the orders from PDFs to TXTs
+    # Convert the publishings' orders from PDFs to TXTs
     for p in publishings:
-        for order in p.orders:
-            convert_order_from_pdf_to_txt(order)
+        convert_publishing_orders_from_pdf_to_txt(p)
 
 
 if __name__ == '__main__':

@@ -9,8 +9,19 @@ import paths
 from . import constants
 
 
+def convert_publishing_orders_from_pdf_to_txt(publishing, verbose=False):
+    """Convert publishings orders from PDF to TXT.
+
+    Parameters:
+        publishing (PublishingData): the publishing.
+        verbose (bool): flag to indicate the verbosity.
+    """
+    for order in publishing:
+        convert_order_from_pdf_to_txt(order, verbose)
+
+
 def convert_order_from_pdf_to_txt(order, verbose=False):
-    """Convert the order from pdf to txt.
+    """Convert the order from PDF to TXT.
 
     Parameters:
         order (OrderData): the order.

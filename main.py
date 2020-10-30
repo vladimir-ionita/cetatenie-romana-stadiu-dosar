@@ -19,7 +19,9 @@ def run(verbose=False):
         print("Step 2. Retrieve the publishings.")
     publishings = retrieve_publishings(html_content)
     if verbose:
-        print("\t{} publishings found".format(len(publishings)))
+        print("\t{} publishings found.".format(len(publishings)))
+        orders_amount = sum([len(p.orders) for p in publishings])
+        print("\t{} orders found.".format(orders_amount))
 
     # Download publishings
     if verbose:

@@ -17,6 +17,11 @@ def convert_pdf_to_txt(pdf_input_file_path, text_output_file_path, verbose=False
         text_output_file_path (str): the path for the text file.
         verbose (bool): flag to indicate the verbosity.
     """
+    if os.path.exists(text_output_file_path):
+        if verbose:
+            print("The TXT file already exists.")
+        return
+
     # Create a temporary folder to store temporary files
     temporary_folder_path = paths.get_storage_folder_path().joinpath(constants.TEMPORARY_FOLDER_NAME)
     if not os.path.exists(temporary_folder_path):

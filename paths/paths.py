@@ -11,7 +11,7 @@ def get_storage_folder_path():
     return Path.home().joinpath(constants.REPOSITORY_PATH)
 
 
-def get_publishings_repository_path():
+def get_publishings_storage_folder_path():
     """Return the publishings repository folder path.
 
     Return:
@@ -30,7 +30,7 @@ def get_publishing_folder_path(publishing):
         Path: the publishing folder path.
     """
     publishing_folder_name = publishing.publishing_date
-    return get_publishings_repository_path().joinpath(publishing_folder_name)
+    return get_publishings_storage_folder_path().joinpath(publishing_folder_name)
 
 
 def get_order_pdf_file_path(order):

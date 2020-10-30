@@ -6,6 +6,25 @@ from . import constants
 from .DossierData import DossierData
 
 
+def get_publishing_dossiers(publishing, verbose=False):
+    """Get the publishing dossiers.
+
+    Parameters:
+        publishing (PublishingData): the publishing.
+        verbose (bool): flag to indicate the verbosity.
+
+    Return:
+        list of DossierData: the found dossiers.
+    """
+    publishing_dossiers = []
+    for order in publishing.orders:
+        order_dossiers = get_order_dossiers(order)
+        if verbose:
+            print("The order {} has {} dossiers.".format(order.name, len(order_dossiers)))
+        publishing_dossiers.extend(order_dossiers)
+    return publishing_dossiers
+
+
 def get_order_dossiers(order):
     """Get the order dossiers.
     Parse the order file for dossiers.

@@ -1,4 +1,6 @@
-from data_gateway import web
+from collections import defaultdict
+
+from data_gateway import web, disk
 from CetatenieJustRoParser import *
 from PublishingsDownloader import *
 from pdf2txt import *
@@ -22,6 +24,15 @@ def run():
 
     # Parse publishings
     dossiers = get_publishings_list_dossiers(publishings)
+
+    # Save the dossiers
+    dossiers_years = defaultdict(list)
+    for d in dossiers:
+        dossiers_years[d.year].append(d.number)
+
+    for k in dossiers_years.keys():
+        dossiers_file_path = paths.get_dossiers_collection_file_path_for_year(k)
+        disk.write_items_list_to_file(dossiers_years[k], dossiers_file_path)
 
 
 if __name__ == '__main__':

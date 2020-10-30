@@ -1,4 +1,4 @@
-from web import *
+from data_gateway import web
 from CetatenieJustRoParser import *
 from PublishingsDownloader import *
 

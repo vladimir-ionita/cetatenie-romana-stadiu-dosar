@@ -45,23 +45,14 @@ def convert_pdf_to_txt(pdf_input_file_path, text_output_file_path, verbose=False
             print("The TXT file already exists.")
         return
 
-    # Create a temporary folder to store temporary files
-    temporary_folder_path = paths.get_temporary_storage_folder_path()
-    if not os.path.exists(temporary_folder_path):
-        os.mkdir(temporary_folder_path)
-
     # Convert the PDF file to images
+    temporary_folder_path = paths.get_temporary_storage_folder_path()
     if verbose:
         print("Converting {} to a text file.".format(pdf_input_file_path))
     images_paths = convert_pdf_to_images(pdf_input_file_path, temporary_folder_path)
 
     # Convert images to TXT
     convert_images_to_txt(images_paths, text_output_file_path)
-
-    # Remove the temporary folder path
-    if verbose:
-        print("Converting cleaning up.")
-    shutil.rmtree(temporary_folder_path)
 
 
 def convert_pdf_to_images(pdf_input_file_path, images_output_folder):

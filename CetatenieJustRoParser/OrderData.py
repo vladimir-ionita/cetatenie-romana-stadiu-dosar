@@ -14,6 +14,13 @@ class OrderData:
             name (str): order name.
             link (str): order link.
         """
-        self.name = name
+        sanitized_name = name.replace(" ", "")
+        if len(sanitized_name) == 0:
+            sanitized_name = link.split('/')[-1]
+        self.name = sanitized_name
+
+        if len(link) == 0:
+            raise Exception("There is no order for the link.")
         self.link = link
+
         self.publishing = None

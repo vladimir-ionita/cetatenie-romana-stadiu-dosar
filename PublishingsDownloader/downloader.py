@@ -1,5 +1,6 @@
 import os
 import wget
+import urllib.request
 import paths
 
 
@@ -56,8 +57,13 @@ def download_order(order, verbose=False):
 
     # Download the file otherwise
     if verbose:
-        print("\t\tDownloading order {}".format(order.name))
-    wget.download(order.link, str(order_file_path))
+        print("\t\tDownloading order `{}`".format(order.name))
+
+    try:
+        wget.download(order.link, str(order_file_path))
+    except:
+        print("\t\tDownloading with wget failed. Trying again with urllib.")
+        urllib.request.urlretrieve(order.link, str(order_file_path))
 
 
 def is_publishing_downloaded(publishing):

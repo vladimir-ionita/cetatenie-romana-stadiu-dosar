@@ -42,17 +42,19 @@ def convert_pdf_to_txt(pdf_input_file_path, text_output_file_path, verbose=False
     """
     if os.path.exists(text_output_file_path):
         if verbose:
-            print("\tThe output file already exists.")
+            print("\tThe output file already exists: {}.".format(text_output_file_path))
         return
 
     # Convert the PDF file to images
     temporary_folder_path = paths.get_temporary_storage_folder_path()
     if verbose:
-        print("\tConverting {} to a text file.".format(pdf_input_file_path))
+        print("\tConverting `{}` to a text file.".format(pdf_input_file_path))
     images_file_paths = convert_pdf_to_images(pdf_input_file_path, temporary_folder_path)
 
     # Convert images to TXT
     convert_images_to_txt(images_file_paths, text_output_file_path)
+    if verbose:
+        print("\tFile converted: `{}`.".format(text_output_file_path))
 
     # Remove the images
     for file_path in images_file_paths:

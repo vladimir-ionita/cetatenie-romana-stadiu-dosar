@@ -8,7 +8,7 @@ from OrdersParser.parser import *
 import paths
 
 
-def run(verbose=False):
+def run_publishings(verbose=False):
     # Retrieve the html content
     if verbose:
         print("Step 1. Retrieve the html content.")
@@ -58,5 +58,5 @@ def run(verbose=False):
 
 if __name__ == '__main__':
     paths.setup()
-    run(verbose=True)
+    run_publishings(verbose=True)
     paths.cleanup()

@@ -1,5 +1,5 @@
 import os
-import shutil
+import uuid
 
 import pdf2image
 from PIL import Image as PILImage
@@ -7,6 +7,38 @@ import pytesseract
 
 import paths
 from . import constants
+
+
+def convert_pdf_files_to_txt_worker(pdf_file_paths_queue, io_lock=None, verbose=False):
+    """Convert files from the file paths queue.
+
+    Parameters:
+        pdf_file_paths_queue (multiprocessing.Queue): the input queue.
+        io_lock: (multiprocessing.Lock): a lock for input and output.
+        verbose (bool): the flag to indicate the verbosity.
+    """
+    while True:
+        # Get data from the queue
+        try:
+            queue_data = pdf_file_paths_queue.get()
+        except ConnectionRefusedError:
+            if verbose:
+                with io_lock:
+                    print("\tQueue connection refused. Retry!")
+            continue
+
+        # Stop when the queue has a None element (the break signal)
+        if queue_data is None:
+            break
+
+        # Unwrap queue data
+        pdf_file_path = queue_data[0]
+
+        # Get txt file path
+        txt_file_path = paths.get_order_txt_file_path_from_pdf_file_path(pdf_file_path)
+
+        # Convert the pdf file otherwise
+        convert_pdf_to_txt(pdf_file_path, txt_file_path, verbose)
 
 
 def convert_publishing_orders_from_pdf_to_txt(publishing, verbose=False):

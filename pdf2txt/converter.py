@@ -70,8 +70,8 @@ def convert_pdf_to_images(pdf_input_file_path, images_output_folder):
 
     # Store the images
     pdf_images_paths = []
-    for index, page in enumerate(pdf_images):
-        image_file_name = constants.IMAGE_FILE_NAME_FORMAT.format(index + 1)
+    for page in pdf_images:
+        image_file_name = constants.IMAGE_FILE_NAME_FORMAT.format(uuid.uuid4())
         image_file_path = os.path.join(images_output_folder, image_file_name)
         page.save(image_file_path, constants.IMAGE_FILE_FORMAT)
         pdf_images_paths.append(image_file_path)

@@ -114,3 +114,16 @@ def get_dossiers_collection_file_path_for_year(year):
     """
     dossiers_collection_file_name = "Dossiers {}.txt".format(year)
     return get_dossiers_storage_folder_path().joinpath(dossiers_collection_file_name)
+
+
+def get_order_pdf_file_path_from_pdf_url(pdf_url):
+    """Return the order pdf file path from the pdf url.
+
+    Parameters:
+        pdf_url (str): the pdf url.
+
+    Returns:
+        Path: the order pdf file path.
+    """
+    file_name = pdf_url.split('/')[-1]
+    return get_orders_storage_folder_path().joinpath(file_name)

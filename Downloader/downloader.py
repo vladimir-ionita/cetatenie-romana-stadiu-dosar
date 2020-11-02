@@ -71,11 +71,11 @@ def download_files_worker(url_queue, io_lock=None, verbose=False):
                 request.urlretrieve(file_url, file_path)
                 downloaded = True
             except HTTPError:
-                print("\t\tHTTP Error. File not found `{}`.".format(file_url))
+                print("\t\t!! HTTP Error. File not found `{}`.".format(file_url))
                 break
             except Exception as e:
                 if verbose:
-                    print("\t\tIssue downloading {}. Exception {}: {}".format(file_url, type(e).__name__, e))
+                    print("\t\t!! Issue downloading {}. Exception {}: {}".format(file_url, type(e).__name__, e))
                 continue
         if downloaded:
             if verbose:

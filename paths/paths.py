@@ -10,6 +10,7 @@ def setup():
     get_publishings_storage_folder_path().mkdir(parents=True, exist_ok=True)
     get_temporary_storage_folder_path().mkdir(parents=True, exist_ok=True)
     get_dossiers_storage_folder_path().mkdir(parents=True, exist_ok=True)
+    get_orders_storage_folder_path().mkdir(parents=True, exist_ok=True)
 
 
 def cleanup():
@@ -52,6 +53,15 @@ def get_dossiers_storage_folder_path():
         Path: the dossiers storage folder path.
     """
     return Path.home().joinpath(constants.DOSSIERS_STORAGE_PATH)
+
+
+def get_orders_storage_folder_path():
+    """Return the orders storage folder path.
+
+    Returns:
+        Path: the orders storage folder path.
+    """
+    return get_storage_folder_path().joinpath(constants.ORDERS_STORAGE_FOLDER_PATH)
 
 
 def get_publishing_folder_path(publishing):

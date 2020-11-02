@@ -25,7 +25,7 @@ def download_files(file_url_list, verbose=False):
     # Fill the queue with data
     for file_url in file_url_list:
         queue.put((
-            file_url
+            file_url,
         ))
 
     # Stop the workers by sending the stop signal

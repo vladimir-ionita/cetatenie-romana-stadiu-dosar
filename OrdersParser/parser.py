@@ -57,6 +57,7 @@ def get_order_dossiers(order_txt_file_path):
 
     dossiers_list = []
     for line in order_file_content:
+        line = line.replace(" ", "")
         dossier_matches = re.search(constants.DOSSIER_REGEX, line)
         if dossier_matches is not None:
             dossier_results = dossier_matches.groups()

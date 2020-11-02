@@ -1,1 +1,1 @@
-DOSSIER_REGEX = "\(([\d]+)/([\d]{4})\)"
+DOSSIER_REGEX = "\(([\d]+).*([\d]{4})"

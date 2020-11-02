@@ -6,6 +6,7 @@ from PublishingsDownloader import *
 from pdf2txt import *
 from OrdersParser.parser import *
 import paths
+from Downloader import *
 
 
 def run_publishings(verbose=False):
@@ -56,7 +57,24 @@ def run_publishings(verbose=False):
         print("Done!")
 
 
+def run_pdf_files(verbose=False):
+    # Retrieve the html content
+    if verbose:
+        print("Step 1. Retrieve the html content.")
+    # html_content = web.get_html_content(CETATENIE_JUST_RO_ORDERS_WEB_PAGE_URL)
+
+    file = open('resources/content.html')
+    html_content = file.read()
+    file.close()
+
+    # Retrieve PDF links
+    pdf_links = extract_pdf_links_from_html(html_content)
+
+    # Download PDF files
+    download_files(pdf_links, verbose)
+
+
 if __name__ == '__main__':
     paths.setup()
-    run_publishings(verbose=True)
+    run_pdf_files(verbose=True)
     paths.cleanup()

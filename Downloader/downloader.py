@@ -43,7 +43,7 @@ def download_files_worker(url_queue, io_lock=None, verbose=False):
         except ConnectionRefusedError:
             if verbose:
                 with io_lock:
-                    print("\t\tQueue connection refused. Retry!")
+                    print("\tQueue connection refused. Retry!")
             continue
 
         # Stop when the queue has a None element (the break signal)
@@ -60,13 +60,13 @@ def download_files_worker(url_queue, io_lock=None, verbose=False):
         if os.path.exists(file_path):
             if verbose:
                 with io_lock:
-                    print("\t\tFile `{}` already exists.".format(file_path))
+                    print("\tFile `{}` already exists.".format(file_path))
             continue
 
         # Download the file otherwise
         if verbose:
             with io_lock:
-                print("\t\tDownloading file `{}`".format(file_path))
+                print("\tDownloading file `{}`".format(file_path))
         downloaded = False
         while not downloaded:
             try:
@@ -74,14 +74,14 @@ def download_files_worker(url_queue, io_lock=None, verbose=False):
                 downloaded = True
             except HTTPError:
                 with io_lock:
-                    print("\t\t!! HTTP Error. File not found `{}`.".format(file_url))
+                    print("\t!! HTTP Error. File not found `{}`.".format(file_url))
                 break
             except Exception as e:
                 if verbose:
                     with io_lock:
-                        print("\t\t!! Issue downloading {}. Exception {}: {}".format(file_url, type(e).__name__, e))
+                        print("\t!! Issue downloading {}. Exception {}: {}".format(file_url, type(e).__name__, e))
                 continue
         if downloaded:
             if verbose:
                 with io_lock:
-                    print("\t\tFile downloaded: `{}` from `{}`".format(file_path, file_url))
+                    print("\tFile downloaded: `{}` from `{}`".format(file_path, file_url))

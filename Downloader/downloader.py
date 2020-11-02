@@ -6,6 +6,12 @@ import paths
 
 
 def download_files(file_url_list, verbose=False):
+    """Downloads a list of files.
+
+    Parameters:
+        file_url_list (list of str): the list of files' urls.
+        verbose (bool): the flag to indicate the verbosity.
+    """
     # Prepare the worker queue
     number_of_processes = multiprocessing.cpu_count()
     queue = multiprocessing.Queue(maxsize=number_of_processes * 2)
@@ -36,6 +42,13 @@ def download_files(file_url_list, verbose=False):
 
 
 def download_files_worker(url_queue, io_lock=None, verbose=False):
+    """Download files from the url queue.
+
+    Parameters:
+        url_queue (multiprocessing.Queue): the input queue.
+        io_lock: (multiprocessing.Lock): a lock for input and output.
+        verbose (bool): the flag to indicate the verbosity.
+    """
     while True:
         # Get data from the queue
         try:

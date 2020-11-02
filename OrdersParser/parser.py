@@ -67,4 +67,5 @@ def get_order_dossiers(order_txt_file_path):
             dossier_number, dossier_year = dossier_results
             dossier = DossierData(dossier_number, dossier_year)
             dossiers_list.append(dossier)
-    return dossiers_list
+    if len(dossiers_list) == 0:
+        raise Exception("Couldn't find any dossiers in file {}.".format(order_txt_file_path))

@@ -110,7 +110,7 @@ def convert_pdf_to_txt(pdf_input_file_path, text_output_file_path, verbose=False
         text_output_file_path (str): the path for the text file.
         verbose (bool): flag to indicate the verbosity.
     """
-    if os.path.exists(text_output_file_path):
+    if os.path.exists(text_output_file_path) and os.stat(text_output_file_path).st_size != 0:
         if verbose:
             print("\tThe output file already exists: {}.".format(text_output_file_path))
         return

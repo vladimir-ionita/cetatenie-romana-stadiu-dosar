@@ -1,7 +1,38 @@
+import multiprocessing
 import os
 from urllib import request
 from urllib.error import HTTPError
 import paths
+
+
+def download_files(file_url_list, verbose=False):
+    # Prepare the worker queue
+    number_of_processes = multiprocessing.cpu_count()
+    queue = multiprocessing.Queue(maxsize=number_of_processes * 2)
+
+    # Prepare the io lock
+    io_lock = None
+    if verbose:
+        io_lock = multiprocessing.Lock()
+
+    # Start the pool
+    pool = multiprocessing.Pool(number_of_processes, initializer=download_files_worker, initargs=(
+        queue,
+        io_lock,
+        verbose
+    ))
+
+    # Fill the queue with data
+    for file_url in file_url_list:
+        queue.put((
+            file_url
+        ))
+
+    # Stop the workers by sending the stop signal
+    for _ in range(number_of_processes):
+        queue.put(None)
+    pool.close()
+    pool.join()
 
 
 def download_files_worker(url_queue, io_lock=None, verbose=False):

@@ -1,4 +1,5 @@
 from collections import defaultdict
+import os
 
 from data_gateway import web, disk
 from CetatenieJustRoParser import *
@@ -75,10 +76,22 @@ def run_pdf_files(verbose=False):
     file.close()
 
     # Retrieve PDF links
+    if verbose:
+        print("Step 2. Retrieve the PDF links.")
     pdf_links = extract_pdf_links_from_html(html_content)
 
     # Download PDF files
+    if verbose:
+        print("Step 3. Download the PDF files.")
     download_files(pdf_links, verbose)
+
+    # Retrieve all pdf files from the folder
+    pdf_file_paths = get_all_pdf_files_in_folder(paths.get_orders_storage_folder_path())
+
+    # Convert the publishings' orders from PDFs to TXTs
+    if verbose:
+        print("Step 4. Convert the publishings.")
+    convert_pdf_files_to_txt(pdf_file_paths, verbose)
 
 
 if __name__ == '__main__':

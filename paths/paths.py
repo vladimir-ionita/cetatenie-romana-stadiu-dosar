@@ -131,3 +131,15 @@ def get_order_pdf_file_path_from_pdf_url(pdf_url):
     """
     file_name = pdf_url.split('/')[-1]
     return get_orders_storage_folder_path().joinpath(file_name)
+
+
+def get_order_txt_file_path_from_pdf_file_path(pdf_file_path):
+    """Return the order txt file path from the pdf file path.
+
+    Parameters:
+        pdf_file_path (str): the pdf file path.
+
+    Returns:
+        Path: the txt file path
+    """
+    return pdf_file_path.replace(".pdf", ".txt")

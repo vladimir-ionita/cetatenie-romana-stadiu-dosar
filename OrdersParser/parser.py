@@ -51,9 +51,24 @@ def get_order_dossiers(order_txt_file_path):
         order_txt_file_path (str): the order txt file path.
 
     Return:
-        list of DossierData: the found dossiers.
+        tuple of (str, list of DossierData): the order number and the list of found dossiers.
     """
     order_file_content = get_sanitized_content_of_file(order_txt_file_path)
+
+    order_number = None
+    for line in order_file_content:
+        line = line.replace(" ", "")
+        order_number_matches = re.search(constants.ORDER_NUMBER_REGEX, line, re.IGNORECASE)
+        if order_number_matches is not None:
+            order_number_results = order_number_matches.groups()
+            if len(order_number_results) != 1:
+                raise Exception("Can't parse the order number.")
+            order_number, = order_number_results
+            order_number = order_number.replace("/", "")
+            order_number = order_number.replace(" ", "")
+            break
+    if not order_number:
+        raise Exception("Couldn't find the order number in file {}.".format(order_txt_file_path))
 
     dossiers_list = []
     for line in order_file_content:
@@ -69,3 +84,5 @@ def get_order_dossiers(order_txt_file_path):
             dossiers_list.append(dossier)
     if len(dossiers_list) == 0:
         raise Exception("Couldn't find any dossiers in file {}.".format(order_txt_file_path))
+
+    return order_number, dossiers_list

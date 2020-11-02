@@ -7,7 +7,6 @@ from . import constants
 def setup():
     """Create storage folders."""
     get_storage_folder_path().mkdir(parents=True, exist_ok=True)
-    get_publishings_storage_folder_path().mkdir(parents=True, exist_ok=True)
     get_temporary_storage_folder_path().mkdir(parents=True, exist_ok=True)
     get_dossiers_storage_folder_path().mkdir(parents=True, exist_ok=True)
     get_orders_storage_folder_path().mkdir(parents=True, exist_ok=True)
@@ -26,15 +25,6 @@ def get_storage_folder_path():
         Path: the storage folder path.
     """
     return Path.home().joinpath(constants.FILES_STORAGE_PATH)
-
-
-def get_publishings_storage_folder_path():
-    """Return the publishings storage folder path.
-
-    Return:
-        Path: the publishings storage folder path.
-    """
-    return Path.home().joinpath(constants.PUBLISHINGS_STORAGE_PATH)
 
 
 def get_temporary_storage_folder_path():
@@ -62,49 +52,6 @@ def get_orders_storage_folder_path():
         Path: the orders storage folder path.
     """
     return Path.home().joinpath(constants.ORDERS_STORAGE_FOLDER_PATH)
-
-
-def get_publishing_folder_path(publishing):
-    """Return the publishing folder path.
-
-    Parameters:
-        publishing (PublishingData): a publishing.
-
-    Return:
-        Path: the publishing folder path.
-    """
-    publishing_folder_name = publishing.name
-    return get_publishings_storage_folder_path().joinpath(publishing_folder_name)
-
-
-def get_order_pdf_file_path(order):
-    """Return the order PDF file path.
-
-    Parameters:
-        order (OrderData): the order.
-
-    Return:
-        Path: the order PDF file path.
-    """
-    file_extension = ".pdf"
-    if ".pdf" in order.name:
-        file_extension = ""
-
-    order_file_name = "Ordinul {}{}".format(order.name, file_extension)
-    return get_publishing_folder_path(order.publishing).joinpath(order_file_name)
-
-
-def get_order_txt_file_path(order):
-    """Return the order TXT file path.
-
-    Parameters:
-        order (OrderData): the order.
-
-    Return:
-        Path: the order TXT file path.
-    """
-    order_file_name = "Ordinul {}.txt".format(order.name)
-    return get_publishing_folder_path(order.publishing).joinpath(order_file_name)
 
 
 def get_dossiers_collection_file_path_for_year(year):

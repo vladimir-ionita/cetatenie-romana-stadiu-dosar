@@ -1,11 +1,4 @@
 CETATENIE_JUST_RO_WEBSITE_BASE_URL = "http://oldcetatenie.just.ro"
 CETATENIE_JUST_RO_ORDERS_WEB_PAGE_URL = "http://oldcetatenie.just.ro/index.php/ro/ordine/articol-11"
 
-HTML_TAG_LIST_ITEM = "li"
 HTML_TAG_LINK = "a"
-HTML_TAG_STRONG = "strong"
-
-PUBLISHING_ITEM_CONTAINING_TEXT = "Data de"
-PUBLISHING_DATE_STRING_LENGTH = 10
-PUBLISHING_DATE_INPUT_FORMAT = "%d.%m.%Y"
-PUBLISHING_DATE_OUTPUT_FORMAT = "%Y.%m.%d"

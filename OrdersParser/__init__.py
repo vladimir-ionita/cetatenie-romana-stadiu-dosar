@@ -1,2 +1,2 @@
 from .DossierData import DossierData
-from .parser import get_publishings_list_dossiers
+from .parser import get_order_dossiers

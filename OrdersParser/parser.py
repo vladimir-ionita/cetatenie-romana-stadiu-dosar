@@ -37,25 +37,23 @@ def get_publishing_dossiers(publishing, verbose=False):
     """
     publishing_dossiers = []
     for order in publishing.orders:
-        order_dossiers = get_order_dossiers(order)
+        order_dossiers = get_order_dossiers(paths.get_order_txt_file_path(order))
         if verbose:
             print("The order {} has {} dossiers.".format(order.name, len(order_dossiers)))
         publishing_dossiers.extend(order_dossiers)
     return publishing_dossiers
 
 
-def get_order_dossiers(order):
+def get_order_dossiers(order_txt_file_path):
     """Get the order dossiers.
-    Parse the order file for dossiers.
 
     Parameters:
-        order (OrderData): the order.
+        order_txt_file_path (str): the order txt file path.
 
     Return:
         list of DossierData: the found dossiers.
     """
-    order_file_path = paths.get_order_txt_file_path(order)
-    order_file_content = get_sanitized_content_of_file(order_file_path)
+    order_file_content = get_sanitized_content_of_file(order_txt_file_path)
 
     dossiers_list = []
     for line in order_file_content:

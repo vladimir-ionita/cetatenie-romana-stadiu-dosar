@@ -1,4 +1,5 @@
 import os
+import multiprocessing
 import uuid
 
 import pdf2image
@@ -7,6 +8,43 @@ import pytesseract
 
 import paths
 from . import constants
+
+
+def convert_pdf_files_to_txt(pdf_file_paths, verbose=False):
+    """Convert a list of pdf files to txt files.
+
+    Parameters:
+        pdf_file_paths (list of str): the list of pdf file paths.
+        verbose (bool): the flag to indicate the verbosity.
+
+    """
+    # Prepare the worker queue
+    number_of_processes = multiprocessing.cpu_count()
+    queue = multiprocessing.Queue(maxsize=number_of_processes * 2)
+
+    # Prepare the io lock
+    io_lock = None
+    if verbose:
+        io_lock = multiprocessing.Lock()
+
+    # Start the pool
+    pool = multiprocessing.Pool(number_of_processes, initializer=convert_pdf_files_to_txt_worker, initargs=(
+        queue,
+        io_lock,
+        verbose
+    ))
+
+    # Fill the queue with data
+    for file_path in pdf_file_paths:
+        queue.put((
+            file_path,
+        ))
+
+    # Stop the workers by sending the stop signal
+    for _ in range(number_of_processes):
+        queue.put(None)
+    pool.close()
+    pool.join()
 
 
 def convert_pdf_files_to_txt_worker(pdf_file_paths_queue, io_lock=None, verbose=False):

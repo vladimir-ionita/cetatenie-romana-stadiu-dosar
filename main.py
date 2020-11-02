@@ -57,6 +57,13 @@ def run_publishings(verbose=False):
         print("Done!")
 
 
+def get_all_pdf_files_in_folder(folder_path):
+    folder_items = os.listdir(folder_path)
+    folder_items_paths = [str(folder_path.joinpath(i)) for i in folder_items]
+    folder_files_paths = [f for f in folder_items_paths if os.path.isfile(f)]
+    return [f for f in folder_files_paths if f.endswith('.pdf')]
+
+
 def run_pdf_files(verbose=False):
     # Retrieve the html content
     if verbose:

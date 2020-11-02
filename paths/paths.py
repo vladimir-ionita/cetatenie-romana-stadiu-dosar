@@ -61,7 +61,7 @@ def get_orders_storage_folder_path():
     Returns:
         Path: the orders storage folder path.
     """
-    return get_storage_folder_path().joinpath(constants.ORDERS_STORAGE_FOLDER_PATH)
+    return Path.home().joinpath(constants.ORDERS_STORAGE_FOLDER_PATH)
 
 
 def get_publishing_folder_path(publishing):
@@ -86,7 +86,11 @@ def get_order_pdf_file_path(order):
     Return:
         Path: the order PDF file path.
     """
-    order_file_name = "Ordinul {}.pdf".format(order.name)
+    file_extension = ".pdf"
+    if ".pdf" in order.name:
+        file_extension = ""
+
+    order_file_name = "Ordinul {}{}".format(order.name, file_extension)
     return get_publishing_folder_path(order.publishing).joinpath(order_file_name)
 
 

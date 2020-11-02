@@ -59,24 +59,29 @@ def download_files_worker(url_queue, io_lock=None, verbose=False):
         # If file already exists, skip
         if os.path.exists(file_path):
             if verbose:
-                print("\t\tFile `{}` already exists.".format(file_path))
+                with io_lock:
+                    print("\t\tFile `{}` already exists.".format(file_path))
             continue
 
         # Download the file otherwise
         if verbose:
-            print("\t\tDownloading file `{}`".format(file_path))
+            with io_lock:
+                print("\t\tDownloading file `{}`".format(file_path))
         downloaded = False
         while not downloaded:
             try:
                 request.urlretrieve(file_url, file_path)
                 downloaded = True
             except HTTPError:
-                print("\t\t!! HTTP Error. File not found `{}`.".format(file_url))
+                with io_lock:
+                    print("\t\t!! HTTP Error. File not found `{}`.".format(file_url))
                 break
             except Exception as e:
                 if verbose:
-                    print("\t\t!! Issue downloading {}. Exception {}: {}".format(file_url, type(e).__name__, e))
+                    with io_lock:
+                        print("\t\t!! Issue downloading {}. Exception {}: {}".format(file_url, type(e).__name__, e))
                 continue
         if downloaded:
             if verbose:
-                print("\t\tFile downloaded: `{}` from `{}`".format(file_path, file_url))
+                with io_lock:
+                    print("\t\tFile downloaded: `{}` from `{}`".format(file_path, file_url))

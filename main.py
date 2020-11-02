@@ -58,11 +58,11 @@ def run_publishings(verbose=False):
         print("Done!")
 
 
-def get_all_pdf_files_in_folder(folder_path):
+def get_all_files_in_folder(folder_path, file_type):
     folder_items = os.listdir(folder_path)
     folder_items_paths = [str(folder_path.joinpath(i)) for i in folder_items]
     folder_files_paths = [f for f in folder_items_paths if os.path.isfile(f)]
-    return [f for f in folder_files_paths if f.endswith('.pdf')]
+    return [f for f in folder_files_paths if f.endswith(file_type)]
 
 
 def run_pdf_files(verbose=False):
@@ -86,7 +86,7 @@ def run_pdf_files(verbose=False):
     download_files(pdf_links, verbose)
 
     # Retrieve all pdf files from the folder
-    pdf_file_paths = get_all_pdf_files_in_folder(paths.get_orders_storage_folder_path())
+    pdf_file_paths = get_all_files_in_folder(paths.get_orders_storage_folder_path(), '.pdf')
 
     # Convert the publishings' orders from PDFs to TXTs
     if verbose:

@@ -10,6 +10,7 @@ def setup():
     get_publishings_storage_folder_path().mkdir(parents=True, exist_ok=True)
     get_temporary_storage_folder_path().mkdir(parents=True, exist_ok=True)
     get_dossiers_storage_folder_path().mkdir(parents=True, exist_ok=True)
+    get_orders_storage_folder_path().mkdir(parents=True, exist_ok=True)
 
 
 def cleanup():
@@ -54,6 +55,15 @@ def get_dossiers_storage_folder_path():
     return Path.home().joinpath(constants.DOSSIERS_STORAGE_PATH)
 
 
+def get_orders_storage_folder_path():
+    """Return the orders storage folder path.
+
+    Returns:
+        Path: the orders storage folder path.
+    """
+    return Path.home().joinpath(constants.ORDERS_STORAGE_FOLDER_PATH)
+
+
 def get_publishing_folder_path(publishing):
     """Return the publishing folder path.
 
@@ -76,7 +86,11 @@ def get_order_pdf_file_path(order):
     Return:
         Path: the order PDF file path.
     """
-    order_file_name = "Ordinul {}.pdf".format(order.name)
+    file_extension = ".pdf"
+    if ".pdf" in order.name:
+        file_extension = ""
+
+    order_file_name = "Ordinul {}{}".format(order.name, file_extension)
     return get_publishing_folder_path(order.publishing).joinpath(order_file_name)
 
 
@@ -104,3 +118,16 @@ def get_dossiers_collection_file_path_for_year(year):
     """
     dossiers_collection_file_name = "Dossiers {}.txt".format(year)
     return get_dossiers_storage_folder_path().joinpath(dossiers_collection_file_name)
+
+
+def get_order_pdf_file_path_from_pdf_url(pdf_url):
+    """Return the order pdf file path from the pdf url.
+
+    Parameters:
+        pdf_url (str): the pdf url.
+
+    Returns:
+        Path: the order pdf file path.
+    """
+    file_name = pdf_url.split('/')[-1]
+    return get_orders_storage_folder_path().joinpath(file_name)

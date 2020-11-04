@@ -43,8 +43,19 @@ def run_pdf_files(verbose=False):
     if verbose:
         print("Step 5. Retrieve orders from TXTs")
     txt_file_paths = get_all_files_in_folder(paths.get_orders_storage_folder_path(), '.txt')
+    dossiers_by_order = {}
     for file_path in txt_file_paths:
-        order_number, dossiers = get_order_dossiers(file_path)
+        order_number, order_dossiers = get_order_dossiers(file_path)
+        dossiers_by_order[order_number]: order_dossiers
+
+    # Save the dossiers
+    if verbose:
+        print("Step 6. Save the dossiers.")
+    disk.write_dictionary_to_file(dossiers_by_order, paths.get_dossiers_collection_file_path())
+
+    # Done
+    if verbose:
+        print("Done!")
 
 
 if __name__ == '__main__':

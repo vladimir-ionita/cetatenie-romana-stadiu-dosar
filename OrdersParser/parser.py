@@ -17,8 +17,14 @@ def get_order_dossiers(order_txt_file_path):
     order_file_content = get_sanitized_content_of_file(order_txt_file_path)
 
     order_number = None
+    carry = None
     for line in order_file_content:
         line = line.replace(" ", "")
+
+        if carry is not None:
+            line = carry + line
+            carry = None
+
         order_number_matches = re.search(constants.ORDER_NUMBER_REGEX, line, re.IGNORECASE)
         if order_number_matches is not None:
             order_number_results = order_number_matches.groups()
@@ -28,6 +34,9 @@ def get_order_dossiers(order_txt_file_path):
             order_number = order_number.replace("/", "")
             order_number = order_number.replace(" ", "")
             break
+        elif constants.ORDER_DESCRIPTION in line:
+            carry = line
+
     if not order_number:
         raise Exception("Couldn't find the order number in file {}.".format(order_txt_file_path))
 

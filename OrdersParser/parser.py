@@ -5,6 +5,10 @@ from . import constants
 from .DossierData import DossierData
 
 
+def remove_whitespaces(line):
+    return line.replace(" ", "")
+
+
 def get_order_dossiers(order_txt_file_path):
     """Get the order dossiers.
 
@@ -19,7 +23,7 @@ def get_order_dossiers(order_txt_file_path):
     order_number = None
     carry = None
     for line in order_file_content:
-        line = line.replace(" ", "")
+        line = remove_whitespaces(line)
 
         if carry is not None:
             line = carry + line
@@ -32,7 +36,7 @@ def get_order_dossiers(order_txt_file_path):
                 raise Exception("Can't parse the order number.")
             order_number, = order_number_results
             order_number = order_number.replace("/", "")
-            order_number = order_number.replace(" ", "")
+            order_number = remove_whitespaces(order_number)
             break
         elif constants.ORDER_DESCRIPTION in line:
             carry = line
@@ -42,7 +46,7 @@ def get_order_dossiers(order_txt_file_path):
 
     dossiers_list = []
     for line in order_file_content:
-        line = line.replace(" ", "")
+        line = remove_whitespaces(line)
         if constants.ORDER_DESCRIPTION in line:
             continue
         dossier_matches = re.search(constants.DOSSIER_REGEX, line)

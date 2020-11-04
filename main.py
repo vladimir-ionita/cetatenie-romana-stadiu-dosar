@@ -19,11 +19,7 @@ def run_pdf_files(verbose=False):
     # Retrieve the html content
     if verbose:
         print("Step 1. Retrieve the html content.")
-    # html_content = web.get_html_content(CETATENIE_JUST_RO_ORDERS_WEB_PAGE_URL)
-
-    file = open('resources/content.html')
-    html_content = file.read()
-    file.close()
+    html_content = web.get_html_content(CETATENIE_JUST_RO_ORDERS_WEB_PAGE_URL)
 
     # Retrieve PDF links
     if verbose:

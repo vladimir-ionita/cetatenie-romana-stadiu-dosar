@@ -39,9 +39,9 @@ def run_pdf_files(verbose=False):
         print("Step 4. Convert the publishings.")
     convert_pdf_files_to_txt(pdf_file_paths, verbose)
 
-    # Retrieve orders from TXTs
+    # Retrieve dossiers from TXTs
     if verbose:
-        print("Step 5. Retrieve orders from TXTs")
+        print("Step 5. Retrieve dossiers from TXTs")
     txt_file_paths = get_all_files_in_folder(paths.get_orders_storage_folder_path(), '.txt')
     dossiers_by_order = {}
     for file_path in txt_file_paths:

@@ -6,6 +6,14 @@ from .DossierData import DossierData
 
 
 def remove_whitespaces(line):
+    """Remove white spaces from the line.
+
+    Parameters:
+        line (str): the line.
+
+    Returns:
+        str: the line without whitespaces.
+    """
     return line.replace(" ", "")
 
 

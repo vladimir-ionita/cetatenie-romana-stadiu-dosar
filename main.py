@@ -40,7 +40,7 @@ def run_pdf_files(verbose=False):
         print("Step 4. Convert the publishings.")
     convert_pdf_files_to_txt(pdf_file_paths, verbose)
 
-    # Retrieve dossiers from TXTs
+    # Retrieve dossiers from TXTs and organize them by year
     if verbose:
         print("Step 5. Retrieve dossiers from TXTs")
     dossiers_by_year = defaultdict(dict)
@@ -76,6 +76,16 @@ def run_pdf_files(verbose=False):
     # Done
     if verbose:
         print("Done!")
+
+
+def search(dossier_number, year):
+    # Retrieve the dossiers for the year
+    year_dossiers_txt_file_path = paths.get_dossiers_collection_file_path_for_year(year)
+    dossiers = disk.get_dictionary_from_file(year_dossiers_txt_file_path)
+    try:
+        print(dossiers[dossier_number])
+    except:
+        print("Not found!")
 
 
 if __name__ == '__main__':

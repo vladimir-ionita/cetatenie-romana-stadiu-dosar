@@ -13,5 +13,5 @@ class DossierData:
             number (str): the dossier number
             year (str): the dossier application year
         """
-        self.number = int(number)
+        self.number = number
         self.year = int(year)

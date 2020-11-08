@@ -46,7 +46,10 @@ def run_pdf_files(verbose=False):
     dossiers_by_year = defaultdict(list)
     txt_file_paths = get_all_files_in_folder(paths.get_orders_storage_folder_path(), '.txt')
     for file_path in txt_file_paths:
-        order_number, order_dossiers = get_order_dossiers(file_path, constants.DOSSIER_REGEX)
+        try:
+            order_number, order_dossiers = get_order_dossiers(file_path, constants.DOSSIER_REGEX)
+        except:
+            order_number, order_dossiers = get_order_dossiers(file_path, constants.DOSSIER_REGEX_NO_PARENTHESES)
 
         for d in order_dossiers:
             dossier = (d.number, order_number)

@@ -65,6 +65,10 @@ def get_order_dossiers(order_txt_file_path, dossier_regex_pattern=constants.DOSS
 
             dossier_number, dossier_year = dossier_results
             dossier = DossierData(dossier_number, dossier_year)
+            if dossier.year < constants.DOSSIER_YEAR_MINIMUM or dossier.year > constants.DOSSIER_YEAR_MAXIMUM:
+                raise Exception("The year is incorrect. File path: {}. Dossier: {}. Year: {}".format(order_txt_file_path,
+                                                                                                     dossier.number,
+                                                                                                     dossier.year))
             dossiers_list.append(dossier)
     if len(dossiers_list) == 0:
         raise Exception("Couldn't find any dossiers in file {}.".format(order_txt_file_path))

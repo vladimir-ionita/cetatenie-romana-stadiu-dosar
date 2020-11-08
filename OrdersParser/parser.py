@@ -17,7 +17,7 @@ def remove_whitespaces(line):
     return line.replace(" ", "")
 
 
-def get_order_dossiers(order_txt_file_path):
+def get_order_dossiers(order_txt_file_path, dossier_regex_pattern=constants.DOSSIER_REGEX):
     """Get the order dossiers.
 
     Parameters:
@@ -57,7 +57,7 @@ def get_order_dossiers(order_txt_file_path):
         line = remove_whitespaces(line)
         if constants.ORDER_DESCRIPTION in line:
             continue
-        dossier_matches = re.search(constants.DOSSIER_REGEX, line)
+        dossier_matches = re.search(dossier_regex_pattern, line)
         if dossier_matches is not None:
             dossier_results = dossier_matches.groups()
             if len(dossier_results) != 2:

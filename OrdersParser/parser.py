@@ -57,13 +57,13 @@ def get_order_dossiers(order_txt_file_path, dossier_regex_pattern=constants.DOSS
         line = remove_whitespaces(line)
         if constants.ORDER_DESCRIPTION in line:
             continue
-        dossier_matches = re.search(dossier_regex_pattern, line)
-        if dossier_matches is not None:
-            dossier_results = dossier_matches.groups()
-            if len(dossier_results) != 2:
-                raise Exception("Can't parse the dossier: {}".format(line))
 
-            dossier_number, dossier_year = dossier_results
+        dossier_matches = re.findall(dossier_regex_pattern, line)
+        for match in dossier_matches:
+            if len(match) != 2:
+                raise Exception("Can't parse the dossier: {}. File path: {}".format(line, order_txt_file_path))
+
+            dossier_number, dossier_year = match
             dossier = DossierData(dossier_number, dossier_year)
             if dossier.year < constants.DOSSIER_YEAR_MINIMUM or dossier.year > constants.DOSSIER_YEAR_MAXIMUM:
                 raise Exception("The year is incorrect. File path: {}. Dossier: {}. Year: {}".format(order_txt_file_path,

@@ -43,7 +43,7 @@ def run_pdf_files(verbose=False):
     # Retrieve dossiers from TXTs
     if verbose:
         print("Step 5. Retrieve dossiers from TXTs")
-    dossiers_by_year = defaultdict(list)
+    dossiers_by_year = defaultdict(dict)
     txt_file_paths = get_all_files_in_folder(paths.get_orders_storage_folder_path(), '.txt')
     for file_path in txt_file_paths:
         try:
@@ -52,8 +52,7 @@ def run_pdf_files(verbose=False):
             order_number, order_dossiers = get_order_dossiers(file_path, constants.DOSSIER_REGEX_NO_PARENTHESES)
 
         for d in order_dossiers:
-            dossier = (d.number, order_number)
-            dossiers_by_year[d.year].append(dossier)
+            dossiers_by_year[d.year][d.number] = order_number
 
     # Save the dossiers
     if verbose:

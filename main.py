@@ -52,7 +52,19 @@ def run_pdf_files(verbose=False):
             order_number, order_dossiers = get_order_dossiers(file_path, constants.DOSSIER_REGEX_NO_PARENTHESES)
 
         for d in order_dossiers:
-            dossiers_by_year[d.year][d.number] = order_number
+            if d.number in dossiers_by_year[d.year]:
+                if verbose:
+                    print("This dossier already exists: {} / {}.".format(d.number, d.year), end=' ')
+                if dossiers_by_year[d.year][d.number] == order_number:
+                    if verbose:
+                        print("But it has the same order value.")
+                else:
+                    if verbose:
+                        print("Currently set for order {}. New value: {}".format(dossiers_by_year[d.year][d.number], order_number))
+                    orders_per_dossier = [dossiers_by_year[d.year][d.number], order_number]
+                    dossiers_by_year[d.year][d.number] = orders_per_dossier
+            else:
+                dossiers_by_year[d.year][d.number] = order_number
 
     # Save the dossiers
     if verbose:

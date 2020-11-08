@@ -1,4 +1,5 @@
 import os
+from collections import defaultdict
 
 from data_gateway import web, disk
 from CetatenieJustRoParser import *
@@ -42,16 +43,21 @@ def run_pdf_files(verbose=False):
     # Retrieve dossiers from TXTs
     if verbose:
         print("Step 5. Retrieve dossiers from TXTs")
+    dossiers_by_year = defaultdict(list)
     txt_file_paths = get_all_files_in_folder(paths.get_orders_storage_folder_path(), '.txt')
-    dossiers_by_order = {}
     for file_path in txt_file_paths:
-        order_number, order_dossiers = get_order_dossiers(file_path)
-        dossiers_by_order[order_number]: order_dossiers
+        order_number, order_dossiers = get_order_dossiers(file_path, constants.DOSSIER_REGEX)
+
+        for d in order_dossiers:
+            dossier = (d.number, order_number)
+            dossiers_by_year[d.year].append(dossier)
 
     # Save the dossiers
     if verbose:
         print("Step 6. Save the dossiers.")
-    disk.write_dictionary_to_file(dossiers_by_order, paths.get_dossiers_collection_file_path())
+    for year in dossiers_by_year.keys():
+        dossiers_file_path = paths.get_dossiers_collection_file_path_for_year(year)
+        disk.write_dictionary_to_file(dossiers_by_year[year], dossiers_file_path)
 
     # Done
     if verbose:

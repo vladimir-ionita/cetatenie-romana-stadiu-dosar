@@ -4,7 +4,7 @@ from collections import defaultdict
 from data_gateway import web, disk
 from cetatenie_just_ro_parser import *
 from pdf2txt import *
-from OrdersParser.parser import *
+from orders_parser.parser import *
 import paths
 from Downloader import *
 

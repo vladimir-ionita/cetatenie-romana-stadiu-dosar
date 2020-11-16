@@ -1,6 +1,6 @@
 import unittest
 
-from OrdersParser import *
+from orders_parser import *
 from paths import get_order_file_path_for_order_with_file_name
 
 

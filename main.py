@@ -106,5 +106,15 @@ def search(dossier_number, year):
 
 if __name__ == '__main__':
     paths.setup()
+
     extract_dossiers(verbose=True)
+
+    lookups = [
+        (12345, 2010),
+        (12346, 2019),
+    ]
+
+    for l in lookups:
+        search(str(l[0]), l[1])
+
     paths.cleanup()

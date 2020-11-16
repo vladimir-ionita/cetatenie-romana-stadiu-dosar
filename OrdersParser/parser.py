@@ -22,6 +22,7 @@ def get_order_dossiers(order_txt_file_path, dossier_regex_pattern=constants.DOSS
 
     Parameters:
         order_txt_file_path (str): the order txt file path.
+        dossier_regex_pattern (str): the dossier regex pattern to search towards.
 
     Return:
         tuple of (str, list of DossierData): the order number and the list of found dossiers.

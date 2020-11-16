@@ -67,15 +67,6 @@ def get_dossiers_collection_file_path_for_year(year):
     return get_dossiers_storage_folder_path().joinpath(dossiers_collection_file_name)
 
 
-def get_dossiers_collection_file_path():
-    """Make the dossiers collection file path.
-
-    Returns:
-        Path: the dossiers colelction file path.
-    """
-    return get_dossiers_storage_folder_path().joinpath(constants.DOSSIERS_FILE_NAME)
-
-
 def get_order_pdf_file_path_from_pdf_url(pdf_url):
     """Return the order pdf file path from the pdf url.
 

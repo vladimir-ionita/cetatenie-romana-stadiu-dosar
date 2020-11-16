@@ -10,6 +10,15 @@ from Downloader import *
 
 
 def get_all_files_in_folder(folder_path, file_type):
+    """Returns all files with a file_type in the folder_path.
+
+    Parameters:
+        folder_path (str): the folder path.
+        file_type (str): the file type.
+
+    Returns:
+        list of str: the list of files.
+    """
     folder_items = os.listdir(folder_path)
     folder_items_paths = [str(folder_path.joinpath(i)) for i in folder_items]
     folder_files_paths = [f for f in folder_items_paths if os.path.isfile(f)]
@@ -17,6 +26,7 @@ def get_all_files_in_folder(folder_path, file_type):
 
 
 def extract_dossiers(verbose=False):
+    """Extract the dossiers."""
     # Retrieve the html content
     if verbose:
         print("Step 1. Retrieve the html content.")
@@ -79,6 +89,12 @@ def extract_dossiers(verbose=False):
 
 
 def search(dossier_number, year):
+    """Lookup a dossier in the extracted dossiers by its number and year.
+
+    Parameters:
+        dossier_number: (str): the dossier number.
+        year (int): the dossier year.
+    """
     # Retrieve the dossiers for the year
     year_dossiers_txt_file_path = paths.get_dossiers_collection_file_path_for_year(year)
     dossiers = disk.get_dictionary_from_file(year_dossiers_txt_file_path)

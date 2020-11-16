@@ -51,7 +51,7 @@ Sometimes the PDF conversion to TXT results in badly formatted data. Unfortunate
 Solutions: Manually convert the malformatted files using `https://pdftotext.com/` or other tools.  
 
 
-#### Notes
+# Notes
 I've also included all the PDF and TXT files until November 2020.
 
 The tool can download and convert them by itself, but it might take a very long time, as there are more than 2000 files until now. This will help a lot.

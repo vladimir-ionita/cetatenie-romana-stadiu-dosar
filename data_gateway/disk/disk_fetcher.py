@@ -7,7 +7,7 @@ def get_raw_content_of_file(file_path):
     Parameters:
         file_path (str): the file path.
 
-    Return:
+    Returns:
         list of str: the raw file content
     """
     file = open(file_path)
@@ -22,7 +22,7 @@ def get_sanitized_content_of_file(file_path):
     Parameters:
         file_path (str): the file path.
 
-    Return:
+    Returns:
         list of str: the sanitized file content
     """
     file_content = get_raw_content_of_file(file_path)

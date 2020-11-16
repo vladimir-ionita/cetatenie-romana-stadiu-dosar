@@ -8,7 +8,7 @@ def extract_pdf_links_from_html(html):
     Parameters:
         html (str): the html content.
 
-    Return:
+    Returns:
         set of str: the set of found pdf links.
     """
     bs = BeautifulSoup(html, 'lxml')

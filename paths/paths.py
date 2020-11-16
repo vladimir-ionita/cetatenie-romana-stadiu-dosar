@@ -21,7 +21,7 @@ def cleanup():
 def get_storage_folder_path():
     """Return the storage folder path.
 
-    Return:
+    Returns:
         Path: the storage folder path.
     """
     return Path.home().joinpath(constants.FILES_STORAGE_PATH)
@@ -30,7 +30,7 @@ def get_storage_folder_path():
 def get_temporary_storage_folder_path():
     """Return the temporary storage folder path.
 
-    Return:
+    Returns:
         Path: the temporary storage folder path.
     """
     return Path.home().joinpath(constants.TEMPORARY_STORAGE_PATH)
@@ -39,7 +39,7 @@ def get_temporary_storage_folder_path():
 def get_dossiers_storage_folder_path():
     """Return the dossiers storage folder path.
 
-    Return:
+    Returns:
         Path: the dossiers storage folder path.
     """
     return Path.home().joinpath(constants.DOSSIERS_STORAGE_PATH)
@@ -60,7 +60,7 @@ def get_dossiers_collection_file_path_for_year(year):
     Parameters:
         year (int): the dossier collection year
 
-    Return:
+    Returns:
         Path: the dossiers collection file path.
     """
     dossiers_collection_file_name = "Dossiers {}.txt".format(year)
@@ -87,7 +87,7 @@ def get_order_txt_file_path_from_pdf_file_path(pdf_file_path):
         pdf_file_path (str): the pdf file path.
 
     Returns:
-        Path: the txt file path
+        Path: the txt file path.
     """
     return pdf_file_path.replace(".pdf", ".txt")
 

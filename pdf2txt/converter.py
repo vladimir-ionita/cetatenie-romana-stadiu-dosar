@@ -115,7 +115,7 @@ def convert_pdf_to_images(pdf_input_file_path, images_output_folder):
         pdf_input_file_path (str): the path for the pdf file.
         images_output_folder (str): the folder path for the images
 
-    Return:
+    Returns:
         list of str: the list of the resulting images' paths
     """
     # Convert PDF to images

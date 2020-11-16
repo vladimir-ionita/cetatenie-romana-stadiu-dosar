@@ -90,3 +90,15 @@ def get_order_txt_file_path_from_pdf_file_path(pdf_file_path):
         Path: the txt file path
     """
     return pdf_file_path.replace(".pdf", ".txt")
+
+
+def get_order_file_path_for_order_with_file_name(order_name):
+    """Return the order file path for order with file name.
+
+    Parameters:
+        order_name (str): the order file name.
+
+    Returns:
+        Path: the order file path.
+    """
+    return get_orders_storage_folder_path().joinpath(order_name)

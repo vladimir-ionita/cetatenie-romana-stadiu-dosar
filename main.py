@@ -16,7 +16,7 @@ def get_all_files_in_folder(folder_path, file_type):
     return [f for f in folder_files_paths if f.endswith(file_type)]
 
 
-def run_pdf_files(verbose=False):
+def extract_dossiers(verbose=False):
     # Retrieve the html content
     if verbose:
         print("Step 1. Retrieve the html content.")
@@ -90,5 +90,5 @@ def search(dossier_number, year):
 
 if __name__ == '__main__':
     paths.setup()
-    run_pdf_files(verbose=True)
+    extract_dossiers(verbose=True)
     paths.cleanup()

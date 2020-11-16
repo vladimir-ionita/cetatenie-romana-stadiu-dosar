@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from CetatenieJustRoParser import constants
+from cetatenie_just_ro_parser import constants
 
 
 def extract_pdf_links_from_html(html):

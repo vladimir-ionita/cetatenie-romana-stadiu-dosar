@@ -2,7 +2,7 @@ import os
 from collections import defaultdict
 
 from data_gateway import web, disk
-from CetatenieJustRoParser import *
+from cetatenie_just_ro_parser import *
 from pdf2txt import *
 from OrdersParser.parser import *
 import paths

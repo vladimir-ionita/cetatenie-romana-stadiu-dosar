@@ -6,7 +6,7 @@ from cetatenie_just_ro_parser import *
 from pdf2txt import *
 from orders_parser.parser import *
 import paths
-from Downloader import *
+from downloader import *
 
 
 def get_all_files_in_folder(folder_path, file_type):
